@@ -28,9 +28,7 @@ namespace DSharpWebhook.Discord.Webhook
             _serializer = new JsonSerializer();
             _jsonFilePath = Path.Combine(directory, $"{number}.json");
 
-            FileStream fileSteam = File.Create(_jsonFilePath);
-
-            fileSteam.Dispose();
+            using(var fileSteam = File.Create(_jsonFilePath)) { }
         }
 
         public async Task SendMessageAsync(DiscordMessage message)
